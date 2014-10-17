@@ -8,6 +8,10 @@ main() {
   export dirname=$(dirname $(realpath $0))
   export lib="$dirname/lib"
   export os="$dirname/os"
+  export data="$dirname/data"
+
+  echo $data
+  exit 0
 
   # parse options
   while [[ "$1" =~ ^- ]]; do

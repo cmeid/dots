@@ -5,51 +5,10 @@
 set -e
 
 # Apps
-apps=(
-  alfred
-  dropbox
-  google-chrome
-  qlcolorcode
-  screenflick
-  slack
-  transmit
-  appcleaner
-  firefox
-  hazel
-  qlmarkdown
-  seil
-  spotify
-  vagrant
-  arq
-  flash
-  iterm2
-  qlprettypatch
-  shiori
-  sublime-text3
-  virtualbox
-  atom
-  flux
-  mailbox
-  qlstephen
-  sketch
-  tower
-  vlc
-  cloudup
-  font-m-plus
-  nvalt
-  quicklook-json
-  skype
-  transmission
-  apikitchen
-  mamp
-)
+source $data/apps.sh
 
 # fonts
-fonts=(
-  font-m-plus
-  font-clear-sans
-  font-roboto
-)
+source $data/fonts.sh
 
 # Specify the location of the apps
 appdir="/Applications"

@@ -33,13 +33,6 @@ defaults write com.apple.systemuiserver menuExtras -array \
 sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
 echo ""
-echo "Disabling OS X Gate Keeper"
-echo "(You'll be able to install any app you want from here on, not just Mac App Store apps)"
-sudo spctl --master-disable
-sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
-defaults write com.apple.LaunchServices LSQuarantine -bool false
-
-echo ""
 echo "Increasing the window resize speed for Cocoa applications"
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
@@ -59,10 +52,6 @@ echo "Displaying ASCII control characters using caret notation in standard text 
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
 echo ""
-echo "Disabling system-wide resume"
-defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
-
-echo ""
 echo "Disabling automatic termination of inactive apps"
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
@@ -73,10 +62,6 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 echo ""
 echo "Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window"
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-
-echo ""
-echo "Never go into computer sleep mode"
-systemsetup -setcomputersleep Off > /dev/null
 
 echo ""
 echo "Check for software updates daily, not just once per week"
@@ -99,14 +84,6 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 echo ""
 echo "Enabling full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
-
-echo ""
-echo "Disabling press-and-hold for keys in favor of a key repeat"
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-
-echo ""
-echo "Setting a blazingly fast keyboard repeat rate (ain't nobody got time fo special chars while coding!)"
-defaults write NSGlobalDomain KeyRepeat -int 0
 
 echo ""
 echo "Disabling auto-correct"
@@ -168,17 +145,11 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 echo ""
 echo "Use column view in all Finder windows by default"
-defaults write com.apple.finder FXPreferredViewStyle Clmv
+defaults write com.apple.finder FXPreferredViewStyle Nlsv
 
 echo ""
 echo "Avoiding the creation of .DS_Store files on network volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-
-echo ""
-echo "Disabling disk image verification"
-defaults write com.apple.frameworks.diskimages skip-verify -bool true
-defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
-defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 
 echo ""
 echo "Enabling snap-to-grid for icons on the desktop and in other icon views"
@@ -198,7 +169,11 @@ echo "Enabling snap-to-grid for icons on the desktop and in other icon views"
 
 echo ""
 echo "Setting the icon size of Dock items to 36 pixels for optimal size/screen-realestate"
-defaults write com.apple.dock tilesize -int 36
+defaults write com.apple.dock tilesize -int 24
+
+echo ""
+echo "Setting dock orientation to top"
+defaults write com.apple.Dock orientation top
 
 echo ""
 echo "Speeding up Mission Control animations and grouping windows by application"
@@ -254,26 +229,13 @@ echo ""
 echo "Adding a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-
-###############################################################################
-# Mail
-###############################################################################
-
-echo ""
-echo "Setting email addresses to copy as 'foo@example.com' instead of 'Foo Bar <foo@example.com>' in Mail.app"
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-
-
 ###############################################################################
 # Terminal
 ###############################################################################
 
 echo ""
-echo "Enabling UTF-8 ONLY in Terminal.app and setting the Pro theme by default"
+echo "Enabling UTF-8 ONLY in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4
-defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
-defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
-
 
 ###############################################################################
 # Time Machine
@@ -300,25 +262,9 @@ echo ""
 echo "Disable smart quotes as itâ€™s annoying for messages that contain code"
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
 
-echo ""
-echo "Disable continuous spell checking"
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
-
 ###############################################################################
 # Personal Additions
 ###############################################################################
-
-echo ""
-echo "Disable hibernation (speeds up entering sleep mode)"
-sudo pmset -a hibernatemode 0
-
-echo ""
-echo "Remove the sleep image file to save disk space"
-sudo rm /Private/var/vm/sleepimage
-echo "Creating a zero-byte file insteadâ€¦"
-sudo touch /Private/var/vm/sleepimage
-echo "â€¦and make sure it canâ€™t be rewritten"
-sudo chflags uchg /Private/var/vm/sleepimage
 
 echo ""
 echo "Disable the sudden motion sensor as itâ€™s not useful for SSDs"
@@ -327,14 +273,8 @@ sudo pmset -a sms 0
 echo ""
 echo "Speeding up wake from sleep to 24 hours from an hour"
 # http://www.cultofmac.com/221392/quick-hack-speeds-up-retina-macbooks-wake-from-sleep-os-x-tips/
-sudo pmset -a standbydelay 86400
+sudo pmset -a standbydelay 10800
 
-echo ""
-echo "Disable computer sleep and stop the display from shutting off"
-sudo pmset -a sleep 0
-sudo pmset -a displaysleep 0
-
-echo ""
 echo "Disable annoying backswipe in Chrome"
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 

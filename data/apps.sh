@@ -1,0 +1,22 @@
+apps=(
+  adium
+  alfred
+  dropbox
+  google-chrome
+  qlcolorcode
+  screenflick
+  appcleaner
+  firefox
+  spotify
+  arq 
+  qlprettypatch
+  sublime-text3
+  atom
+  flux
+  mailbox
+  qlstephen
+  vlc 
+  quicklook-json
+  skype
+  transmission
+)
