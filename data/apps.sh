@@ -18,5 +18,5 @@ apps=(
   vlc 
   quicklook-json
   skype
-  transmission
+  istat-menus
 )
