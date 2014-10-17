@@ -10,9 +10,6 @@ main() {
   export os="$dirname/os"
   export data="$dirname/data"
 
-  echo $data
-  exit 0
-
   # parse options
   while [[ "$1" =~ ^- ]]; do
     case $1 in
