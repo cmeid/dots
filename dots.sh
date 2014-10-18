@@ -9,6 +9,7 @@ main() {
   export lib="$dirname/lib"
   export os="$dirname/os"
   export data="$dirname/data"
+  export custom="$dirname/custom"
 
   # parse options
   while [[ "$1" =~ ^- ]]; do
@@ -73,6 +74,7 @@ boot() {
     echo "boot: could not find \"$1\""
     exit 1
   fi
+  $custom/index.sh
 }
 
 # update either dots or OS
