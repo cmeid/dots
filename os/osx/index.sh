@@ -37,4 +37,6 @@ function replace_profile(){
 	else
 	  echo "$HOME/.bash_profile already exists. remove and run again."
 	fi 
+}
 
+$custom/index.sh
