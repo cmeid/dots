@@ -8,7 +8,6 @@ john
 lftp
 mackup
 mobile-shell
-ncftp
 nmap
 parallel
 pstree
