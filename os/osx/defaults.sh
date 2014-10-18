@@ -10,7 +10,14 @@
 # Ask for the administrator password upfront
 sudo -v
 
-echo "This script will make your Mac awesome"
+echo ""
+echo "Setting your computer name (as done via System Preferences â†’ Sharing)"
+echo "What would you like it to be?"
+read COMPUTER_NAME
+sudo scutil --set ComputerName $COMPUTER_NAME
+sudo scutil --set HostName $COMPUTER_NAME
+sudo scutil --set LocalHostName $COMPUTER_NAME
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $COMPUTER_NAME
 
 ###############################################################################
 # General UI/UX
